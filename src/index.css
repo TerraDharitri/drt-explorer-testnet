@@ -1,0 +1,619 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Add this at the beginning of the file to make sure it doesn't get overridden */
+body {
+  display: block !important; /* Force display */
+  opacity: 1 !important; /* Force visibility */
+  visibility: visible !important;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+#root {
+  display: block !important;
+}
+
+/* Debug styles */
+.debug-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+  border-bottom: 2px solid red;
+  font-family: monospace;
+}
+
+:root {
+  /* Common variables */
+  --primary-color: #1a4dda;
+  --secondary-color: #10b981;
+  --accent-color: #f7931a;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+
+  /* Light theme variables (default) */
+  --background-color: #ffffff;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --hover-color: #f3f4f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dim theme variables */
+.dim-theme {
+  --background-color: #15202b;
+  --card-background: #1e2732;
+  --text-color: #e6e9ea;
+  --text-muted: #8899a6;
+  --border-color: #38444d;
+  --hover-color: #253341;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Dark theme variables */
+.dark-theme {
+  --background-color: #000000;
+  --card-background: #141414;
+  --text-color: #ffffff;
+  --text-muted: #a0a0a0;
+  --border-color: #272727;
+  --hover-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Light theme */
+.light-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* For Tailwind dark mode compatibility */
+.dark {
+  color-scheme: dark;
+}
+
+/* Important: Apply the correct theme for body when using respective themes */
+body.dark-theme {
+  background-color: #000000;
+}
+
+body.dim-theme {
+  background-color: #15202b;
+}
+
+/* Apply dark theme to all common Tailwind classes when in dark theme */
+.dark-theme .bg-white,
+.dark-theme .bg-gray-50,
+.dark-theme .bg-gray-100,
+.dark-theme .bg-gray-200,
+.dark-theme .bg-gray-700,
+.dark-theme .bg-gray-800,
+.dark-theme .bg-gray-900 {
+  background-color: var(--card-background);
+}
+
+/* Apply dim theme to all common Tailwind classes when in dim theme */
+.dim-theme .bg-white,
+.dim-theme .bg-gray-50,
+.dim-theme .bg-gray-100,
+.dim-theme .bg-gray-200,
+.dim-theme .bg-gray-700,
+.dim-theme .bg-gray-800,
+.dim-theme .bg-gray-900 {
+  background-color: var(--card-background);
+}
+
+/* Card backgrounds for each theme */
+.dark-theme .card {
+  background-color: #141414;
+  border-color: #272727;
+}
+
+.dim-theme .card {
+  background-color: #1e2732;
+  border-color: #38444d;
+}
+
+.dark .dark\:bg-black {
+  background-color: #000000;
+}
+
+.dark .dark\:bg-gray-900 {
+  background-color: #141414;
+}
+
+.dim-theme .dark\:bg-black {
+  background-color: #15202b;
+}
+
+.dim-theme .dark\:bg-gray-900 {
+  background-color: #1e2732;
+}
+
+/* Text colors */
+.dark-theme .text-gray-700,
+.dark-theme .dark\:text-gray-300 {
+  color: #f1f1f1;
+}
+
+.dim-theme .text-gray-700,
+.dim-theme .dark\:text-gray-300 {
+  color: #e6e9ea;
+}
+
+/* Hover states */
+.dark-theme .dark\:hover\:bg-gray-900:hover {
+  background-color: #1f1f1f !important;
+}
+
+.dim-theme .dark\:hover\:bg-gray-900:hover {
+  background-color: #253341 !important;
+}
+
+/* Border colors */
+.dark-theme .border,
+.dark-theme .dark\:border-gray-700,
+.dark-theme .dark\:border-gray-800 {
+  border-color: #272727 !important;
+}
+
+.dim-theme .border,
+.dim-theme .dark\:border-gray-700,
+.dim-theme .dark\:border-gray-800 {
+  border-color: #38444d !important;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+.container-custom {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition-property: color, background-color, border-color;
+  transition-duration: 300ms;
+}
+
+.btn-primary {
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 300ms;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  transition: all 300ms;
+}
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-secondary:focus {
+  outline: none;
+}
+
+.btn-outline {
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  transition: all 300ms;
+}
+.dark .btn-outline {
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+.btn-outline:hover {
+  background-color: #f3f4f6;
+}
+.dark .btn-outline:hover {
+  background-color: #1f2937;
+}
+.btn-outline:focus {
+  outline: none;
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 300ms;
+}
+.dark .card {
+  background-color: #1f2937;
+}
+
+.card-hover:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: all 300ms;
+}
+
+.card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.dark .card-header {
+  border-color: #374151;
+}
+
+.card-body {
+  padding: 1rem 1.5rem;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+.dark .card-footer {
+  border-color: #374151;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+.dark .section-title {
+  color: white;
+}
+
+.gradient-text {
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--secondary-color)
+  );
+}
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.dark .glass {
+  background-color: rgba(31, 41, 55, 0.8);
+  border-color: rgba(55, 65, 81, 0.2);
+}
+
+.input {
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 300ms;
+}
+.dark .input {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-primary {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+}
+.dark .badge-primary {
+  background-color: rgba(var(--primary-color-rgb), 0.2);
+  color: rgba(var(--primary-color-rgb), 0.8);
+}
+
+.badge-secondary {
+  background-color: rgba(var(--secondary-color-rgb), 0.1);
+  color: var(--secondary-color);
+}
+.dark .badge-secondary {
+  background-color: rgba(var(--secondary-color-rgb), 0.2);
+  color: rgba(var(--secondary-color-rgb), 0.8);
+}
+
+.badge-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: rgb(6, 95, 70);
+}
+.dark .badge-success {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: rgb(110, 231, 183);
+}
+
+.badge-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: rgb(153, 27, 27);
+}
+.dark .badge-danger {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: rgb(248, 113, 113);
+}
+
+.badge-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: rgb(146, 64, 14);
+}
+.dark .badge-warning {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: rgb(251, 191, 36);
+}
+
+.badge-info {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: rgb(30, 64, 175);
+}
+.dark .badge-info {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: rgb(147, 197, 253);
+}
+
+.badge-outline {
+  border: 1px solid currentColor;
+  background-color: transparent;
+}
+
+.truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Dark theme-specific components */
+.dark-theme .card,
+.dark-theme .bg-white,
+.dark-theme .bg-gray-100,
+.dark-theme .bg-gray-200,
+.dark-theme .bg-gray-800,
+.dark-theme .bg-gray-900 {
+  background-color: var(--card-background);
+}
+
+.dark-theme .border {
+  border-color: var(--border-color);
+}
+
+.dark-theme .card-hover:hover {
+  background-color: #1f1f1f;
+}
+
+/* Tailwind specific dark theme overrides for dark mode */
+.dark .dark\:bg-gray-800 {
+  background-color: var(--card-background) !important;
+}
+
+.dark .dark\:bg-gray-900 {
+  background-color: var(--card-background) !important;
+}
+
+.dark .dark\:border-gray-700 {
+  border-color: var(--border-color) !important;
+}
+
+.dark .dark\:hover\:bg-gray-700:hover {
+  background-color: #262626 !important;
+}
+
+/* Override for featured section background */
+.dark-theme .bg-blue-900,
+.dark-theme .bg-blue-800,
+.dark-theme .bg-indigo-900,
+.dark-theme .bg-indigo-800 {
+  background-color: #111111;
+}
+
+/* Apply theme overrides and ensure no leakage between themes */
+
+/* Dark theme specific overrides */
+body.dark-theme .bg-gray-800,
+body.dark-theme .dark\:bg-gray-800,
+body.dark-theme .bg-gray-900,
+body.dark-theme .dark\:bg-gray-900,
+body.dark-theme .dark\:bg-gray-700 {
+  background-color: #000000 !important;
+}
+
+body.dark-theme .card,
+body.dark-theme nav .card {
+  background-color: #141414 !important;
+}
+
+body.dark-theme input.dark\:bg-gray-900,
+body.dark-theme input.dark\:bg-black {
+  background-color: #141414 !important;
+}
+
+body.dark-theme .hover\:bg-gray-100:hover,
+body.dark-theme .dark\:hover\:bg-gray-900:hover {
+  background-color: #1a1a1a !important;
+}
+
+/* Dim theme specific overrides */
+body.dim-theme .bg-gray-800,
+body.dim-theme .dark\:bg-gray-800,
+body.dim-theme .bg-gray-900,
+body.dim-theme .dark\:bg-gray-900,
+body.dim-theme .dark\:bg-gray-700 {
+  background-color: #15202b !important;
+}
+
+body.dim-theme .card,
+body.dim-theme nav .card {
+  background-color: #1e2732 !important;
+}
+
+body.dim-theme input.dark\:bg-gray-900,
+body.dim-theme input.dark\:bg-black {
+  background-color: #1e2732 !important;
+}
+
+body.dim-theme .hover\:bg-gray-100:hover,
+body.dim-theme .dark\:hover\:bg-gray-900:hover {
+  background-color: #253341 !important;
+}
+
+/* Common dark mode text and border handling for both themes */
+body.dark-theme .border-gray-200,
+body.dark-theme .dark\:border-gray-800,
+body.dark-theme .dark\:border-gray-700,
+body.dim-theme .border-gray-200,
+body.dim-theme .dark\:border-gray-800,
+body.dim-theme .dark\:border-gray-700 {
+  border-color: var(--border-color) !important;
+}
+
+/* Ensure dropdown backgrounds are correct */
+body.dark-theme .dark\:bg-black {
+  background-color: #000000 !important;
+}
+
+body.dim-theme .dark\:bg-black {
+  background-color: #15202b !important;
+}
